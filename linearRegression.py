@@ -13,3 +13,18 @@ df.rename(columns={'Length1':'VerticalLen','Length2':'DiagonalLen','Length3':'Cr
 print(df.sample(5)) # Display random 5 records
 
 print(df.info())
+
+#data visualization
+df_sp = df.Species.value_counts()
+df_sp = pd.DataFrame(df_sp)
+df_sp.T 
+
+#plotting data
+sns.barplot(x= df_sp.index, y = df_sp.Species) # df_sp.index will returns row labels of dataframe
+plt.xlabel('Species')
+plt.ylabel('Count of Species')
+plt.rcParams["figure.figsize"] = (10,6)
+plt.title('Fish Count Based On Species')
+plt.show()
+
+#removing outliers
