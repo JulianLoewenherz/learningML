@@ -82,3 +82,22 @@ plt.title('Outlier Detection based on Height')
 
 
 # building machine learning model 
+X = df3[['Height','Width']] # Select columns using column name
+print(X.head())
+
+y = df3[['Weight']]
+print(y.head())
+
+#splitting the dataset to use one set for testing and the other for training the model
+#test_size=0.2 means that 20% of data will be used for testing and 80% for training the model
+X_train,X_test, y_train, y_test = train_test_split(X, y, test_size =0.2, random_state = 1) 
+print('X_train dimension= ', X_train.shape)
+print('X_test dimension= ', X_test.shape)
+print('y_train dimension= ', y_train.shape)
+print('y_train dimension= ', y_test.shape)
+
+# training the model using Ordinary Least Squares Algorithm
+model = linear_model.LinearRegression()
+model.fit(X_train,y_train) #this trains the data to the x_train and y_train data specified earlier using OLS
+
+
