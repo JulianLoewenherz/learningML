@@ -49,3 +49,36 @@ print('New dimension of dataset is= ', df2.shape)
 df2.head()
 
 
+#outlier detection and removal 
+#making a boxplot
+sns.boxplot(x=df2['Weight'])
+plt.title('Outlier Detection based on Weight')
+
+
+#making a boxplot 
+sns.boxplot(x=df2['Weight'])
+plt.title('Outlier Detection based on Weight')
+
+#function for outlier detection 
+def outlier_detection(dataframe):
+  Q1 = dataframe.quantile(0.25)
+  Q3 = dataframe.quantile(0.75)
+  IQR = Q3 - Q1
+  upper_end = Q3 + 1.5 * IQR
+  lower_end = Q1 - 1.5 * IQR 
+  outlier = dataframe[(dataframe > upper_end) | (dataframe < lower_end)]
+  return outlier
+
+print(outlier_detection(df2['Weight']))
+
+# 3 outliers at 142 143 144
+df3 = df2.drop([142,143,144])
+df3.shape
+
+#checking height now 
+sns.boxplot(x=df2['Height'])
+plt.title('Outlier Detection based on Height')
+# no outliers for height
+
+
+# building machine learning model 
