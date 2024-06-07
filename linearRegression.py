@@ -100,4 +100,15 @@ print('y_train dimension= ', y_test.shape)
 model = linear_model.LinearRegression()
 model.fit(X_train,y_train) #this trains the data to the x_train and y_train data specified earlier using OLS
 
+#printing the calculated coefficients 
+print('coef= ', model.coef_) #expecting one for height and one for weight
+print('intercept= ', model.intercept_)
+print('score= ', model.score(X_test,y_test)) # returns the accuracy of the model
+
+#predicting data in a column and comparing it
+predictedWeight = pd.DataFrame(model.predict(X_test), columns=['Predicted Weight']) # Create new dataframe of column'Predicted Weight'
+actualWeight = pd.DataFrame(y_test)
+actualWeight = actualWeight.reset_index(drop=True) # Drop the index so that we can concat it, to create new dataframe
+df_actual_vs_predicted = pd.concat([actualWeight,predictedWeight],axis =1)
+df_actual_vs_predicted.T
 
