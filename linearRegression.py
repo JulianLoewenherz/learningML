@@ -28,3 +28,24 @@ plt.title('Fish Count Based On Species')
 plt.show()
 
 #removing outliers
+print(df[df.Weight <= 0])
+
+#we see that roach's weight is 0 so remove
+df1 = df.drop([40])
+print('New dimension of dataset is= ', df1.shape)
+
+
+
+#making correlation matrix
+df1.corr()
+plt.rcParams["figure.figsize"] = (10,6) # Custom figure size in inches
+sns.heatmap(df1.corr(), annot =True)
+plt.title('Correlation Matrix')
+plt.show()
+
+#dropping VerticalLen', 'DiagonalLen' and 'Crosslen' column
+df2 = df1.drop(['VerticalLen', 'DiagonalLen', 'CrossLen'], axis =1) # Can also use axis = 'columns'
+print('New dimension of dataset is= ', df2.shape)
+df2.head()
+
+
