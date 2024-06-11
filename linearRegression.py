@@ -110,5 +110,41 @@ predictedWeight = pd.DataFrame(model.predict(X_test), columns=['Predicted Weight
 actualWeight = pd.DataFrame(y_test)
 actualWeight = actualWeight.reset_index(drop=True) # Drop the index so that we can concat it, to create new dataframe
 df_actual_vs_predicted = pd.concat([actualWeight,predictedWeight],axis =1)
-df_actual_vs_predicted.T
+print(df_actual_vs_predicted.T)
+
+#visualizing predicted vs actual in a scatterplot
+plt.scatter(y_test, model.predict(X_test)) 
+plt.xlabel('Weight From Test Data')
+plt.ylabel('Weight Predicted By Model')
+plt.rcParams["figure.figsize"] = (10,6) 
+plt.title("Weight From test Data Vs Weight Predicted By Model")
+plt.show()
+
+plt.scatter(X_test['Height'], y_test, color='red', label = 'Actual Weight')
+plt.scatter(X_test['Height'], model.predict(X_test), color='green', label = 'Predicted Weight')
+plt.xlabel('Height')
+plt.ylabel('Weight')
+plt.rcParams["figure.figsize"] = (10,6) 
+plt.title('Actual Vs Predicted Weight for Test Data')
+plt.legend()
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
