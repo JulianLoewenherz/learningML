@@ -1,7 +1,8 @@
 import pandas as pd
+import math
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv('Google_Stock_Price_Train.csv')
+df = pd.read_csv('/Users/julianloewenherz/Desktop/learningML/linearReg/Google_Stock_Price_Train.csv')
 
 # Set the display option to show all columns
 pd.set_option('display.max_columns', None)
@@ -28,5 +29,15 @@ df['PCT_change'] = (df['Close'] - df['Open']) / df['Open'] * 100
 # Select relevant features
 df = df[['Close', 'HL_PCT', 'PCT_change', 'Volume']]
 
-# Print the first few rows of the updated DataFrame
+forecast_col = 'Close'
+df.fillna(-99999, inplace=True) 
+
+forecast_out = int(math.ceil(0.01*len(df)))
+
+df['label'] = df[forecast_col].shift(-forecast_out)
+
 print(df.head())
+
+# Features used to predict the label
+# Features ex: number of bedrooms in a house, location, square footage
+# Label: thing being predicted would be house price
